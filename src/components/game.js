@@ -251,7 +251,7 @@ const Game = ({ map }) => {
         while (taskNumber <= 100) {
           try {
             // 1. Fetch the text file
-            const response = await fetch(`/test/tasks/${taskNumber}.txt`);
+            const response = await fetch(`/mfg7/tasks/${taskNumber}.txt`);
             if (!response.ok) break;
 
             const text = await response.text();
@@ -264,7 +264,7 @@ const Game = ({ map }) => {
             // 2. Check if image exists
             let hasImage = false;
             try {
-              const imgResponse = await fetch(`/test/tasks/pics/${taskNumber}.png`, { method: 'HEAD' });
+              const imgResponse = await fetch(`/mfg7/tasks/pics/${taskNumber}.png`, { method: 'HEAD' });
               if (imgResponse.ok) {
                 const contentType = imgResponse.headers.get('content-type');
                 // Only accept if it's actually an image or if we can't check content-type but response was OK
@@ -279,7 +279,7 @@ const Game = ({ map }) => {
             tasks.push({
               id: taskNumber,
               text: text.trim(),
-              imagePath: hasImage ? `/test/tasks/pics/${taskNumber}.png` : null,
+              imagePath: hasImage ? `/mfg7/tasks/pics/${taskNumber}.png` : null,
             });
 
             taskNumber++;
@@ -910,7 +910,7 @@ const Game = ({ map }) => {
           onClick={undo}
           title="Отменить последнее действие"
         >
-          <img src="/test/images/undo-icon.png" alt="Отменить" />
+          <img src="/mfg7/images/undo-icon.png" alt="Отменить" />
         </UndoButton>
 
         <RedoButton
@@ -918,7 +918,7 @@ const Game = ({ map }) => {
           onClick={redo}
           title="Повторить отмененное действие"
         >
-          <img src="/test/images/redo-icon.png" alt="Повторить" />
+          <img src="/mfg7/images/redo-icon.png" alt="Повторить" />
         </RedoButton>
 
         {pendingCaptureZone && (
@@ -931,14 +931,14 @@ const Game = ({ map }) => {
                   onClick={() => handleDefenderAnswer(false)}
                   data-order={getOrderForPlayer('defender', captureState.defenderAnswer === false)}
                 >
-                  <img src="/test/images/defend-wrong-icon.png" alt="Защита неверно" />
+                  <img src="/mfg7/images/defend-wrong-icon.png" alt="Защита неверно" />
                 </CaptureButton>
                 <CaptureButton
                   className={captureState.defenderAnswer === true ? 'active' : ''}
                   onClick={() => handleDefenderAnswer(true)}
                   data-order={getOrderForPlayer('defender', captureState.defenderAnswer === true)}
                 >
-                  <img src="/test/images/defend-correct-icon.png" alt="Защита верно" />
+                  <img src="/mfg7/images/defend-correct-icon.png" alt="Защита верно" />
                 </CaptureButton>
               </CaptureModalSideActions>
 
@@ -971,14 +971,14 @@ const Game = ({ map }) => {
                   onClick={() => handleAttackerAnswer(false)}
                   data-order={getOrderForPlayer('attacker', captureState.attackerAnswer === false)}
                 >
-                  <img src="/test/images/attack-wrong-icon.png" alt="Атака неверно" />
+                  <img src="/mfg7/images/attack-wrong-icon.png" alt="Атака неверно" />
                 </CaptureButton>
                 <CaptureButton
                   className={captureState.attackerAnswer === true ? 'active' : ''}
                   onClick={() => handleAttackerAnswer(true)}
                   data-order={getOrderForPlayer('attacker', captureState.attackerAnswer === true)}
                 >
-                  <img src="/test/images/attack-correct-icon.png" alt="Атака верно" />
+                  <img src="/mfg7/images/attack-correct-icon.png" alt="Атака верно" />
                 </CaptureButton>
               </CaptureModalSideActions>
             </CaptureModalCard>
